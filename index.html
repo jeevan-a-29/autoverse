@@ -1,0 +1,486 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BMW | Ultimate Driving Machine</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #080b10;
+            color: white;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 8%;
+            background: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #202630;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #55aaff;
+            letter-spacing: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #55aaff;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            background:
+                linear-gradient(90deg, #080b10 10%, rgba(8,11,16,.8) 45%, transparent),
+                url("https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .tag {
+            color: #55aaff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 88px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #55aaff;
+        }
+
+        .hero p {
+            color: #d0d4dc;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #1684ed;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0064c7;
+            transform: translateY(-3px);
+        }
+
+        /* SECTION COMMON */
+        section {
+            padding: 85px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #aab2c0;
+            margin-bottom: 45px;
+            line-height: 1.6;
+        }
+
+        /* CARS */
+        .cars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .car-card {
+            background: #111720;
+            border: 1px solid #252d39;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.35s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            border-color: #1684ed;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .car-info {
+            padding: 25px;
+        }
+
+        .car-info h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .car-info p {
+            color: #aab2c0;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .specs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 15px 0;
+            border-top: 1px solid #303947;
+            color: #55aaff;
+            font-size: 13px;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #10151e;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 20px auto 30px;
+            color: #b7bfcc;
+            line-height: 1.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            margin-top: 45px;
+        }
+
+        .stat h3 {
+            color: #55aaff;
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            color: #aab2c0;
+            margin: 0;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: #aab2c0;
+            margin: 20px 0 30px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #030508;
+            border-top: 1px solid #252d39;
+            color: #8b95a5;
+            font-size: 14px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+                font-size: 13px;
+            }
+
+            .hero {
+                min-height: 75vh;
+                padding: 60px 7%;
+                background-position: 60% center;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            section {
+                padding: 65px 6%;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">BMW.</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#models">Models</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <div class="tag">Sheer Driving Pleasure</div>
+
+            <h1>THE POWER<br>OF <span>DRIVING.</span></h1>
+
+            <p>
+                Experience the perfect combination of luxury,
+                performance, and innovation. Discover the world
+                of BMW and find your ultimate driving machine.
+            </p>
+
+            <a href="#models" class="btn">EXPLORE MODELS →</a>
+        </div>
+    </header>
+
+    <!-- CAR MODELS -->
+    <section id="models">
+        <h2 class="section-title">Explore Our Models</h2>
+
+        <p class="section-subtitle">
+            Engineered for performance. Designed for perfection.
+        </p>
+
+        <div class="cars">
+
+            <!-- BMW M4 -->
+            <article class="car-card">
+                <img
+                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80"
+                    alt="BMW performance car">
+
+                <div class="car-info">
+                    <h3>BMW M4</h3>
+
+                    <p>
+                        A bold performance coupe combining
+                        motorsport-inspired engineering with
+                        modern luxury.
+                    </p>
+
+                    <div class="specs">
+                        <span>M Performance</span>
+                        <span>Coupe</span>
+                    </div>
+
+                    <button class="btn" onclick="showDetails('BMW M4')">
+                        Discover More
+                    </button>
+                </div>
+            </article>
+
+            <!-- BMW M5 -->
+            <article class="car-card">
+                <img
+                    src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"
+                    alt="Luxury sports car">
+
+                <div class="car-info">
+                    <h3>BMW M5</h3>
+
+                    <p>
+                        A high-performance sedan that brings
+                        powerful driving dynamics and premium
+                        comfort together.
+                    </p>
+
+                    <div class="specs">
+                        <span>M Performance</span>
+                        <span>Sedan</span>
+                    </div>
+
+                    <button class="btn" onclick="showDetails('BMW M5')">
+                        Discover More
+                    </button>
+                </div>
+            </article>
+
+            <!-- BMW X5 -->
+            <article class="car-card">
+                <img
+                    src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80"
+                    alt="Luxury SUV">
+
+                <div class="car-info">
+                    <h3>BMW X5</h3>
+
+                    <p>
+                        Discover a premium SUV with a spacious
+                        interior, confident styling, and
+                        versatile everyday performance.
+                    </p>
+
+                    <div class="specs">
+                        <span>Luxury</span>
+                        <span>SUV</span>
+                    </div>
+
+                    <button class="btn" onclick="showDetails('BMW X5')">
+                        Discover More
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <h2 class="section-title">Beyond Ordinary</h2>
+
+        <p>
+            BMW represents a passion for engineering, distinctive
+            design, and an engaging driving experience. Explore
+            different models and discover the technology and
+            craftsmanship behind every journey.
+        </p>
+
+        <div class="stats">
+            <div class="stat">
+                <h3>M</h3>
+                <p>Performance DNA</p>
+            </div>
+
+            <div class="stat">
+                <h3>i</h3>
+                <p>Electric Innovation</p>
+            </div>
+
+            <div class="stat">
+                <h3>X</h3>
+                <p>SUV Excellence</p>
+            </div>
+
+            <div class="stat">
+                <h3>7</h3>
+                <p>Luxury Series</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Ready to Explore?</h2>
+
+        <p>
+            Your next driving experience starts here.
+        </p>
+
+        <a
+            href="https://www.bmw.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn">
+            VISIT BMW INDIA →
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            © <span id="year"></span> BMW Car Showcase.
+            Created for a frontend development project.
+        </p>
+        <p style="margin-top: 10px;">
+            Independent demo project. Not an official BMW website.
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function showDetails(carName) {
+            alert(
+                "Welcome to " + carName + "!\n\n" +
+                "Explore specifications, features, and design " +
+                "through the official BMW website."
+            );
+        }
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+```
